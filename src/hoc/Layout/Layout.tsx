@@ -1,4 +1,5 @@
 import React from 'react'
+import classes from './Layout.module.css'
 
 type LayoutProps = {
   children: JSX.Element
@@ -7,7 +8,7 @@ type LayoutProps = {
 class Layout extends React.Component<LayoutProps> {
   render() {
     return (
-      <div>
+      <div className={classes.layout}>
         <main>{this.props.children}</main>
       </div>
     )
