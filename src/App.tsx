@@ -1,8 +1,13 @@
 import React from 'react'
+import Layout from './hoc/Layout/Layout'
 
 class App extends React.Component {
   render() {
-    return <h1>Hello</h1>
+    return (
+      <Layout>
+        <div>Here will be routing!</div>
+      </Layout>
+    )
   }
 }
 
