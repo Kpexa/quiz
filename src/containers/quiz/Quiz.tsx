@@ -5,7 +5,11 @@ type QuizState = {
   quizes: any[]
 }
 
-class Quiz extends React.Component<QuizState> {
+class Quiz extends React.Component<{}, QuizState> {
+  state: QuizState = {
+    quizes: [],
+  }
+
   render() {
     return (
       <div className={classes.quiz_main}>
