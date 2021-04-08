@@ -1,11 +1,12 @@
 import React from 'react'
+import Quiz from './containers/quiz/Quiz'
 import Layout from './hoc/Layout/Layout'
 
 class App extends React.Component {
   render() {
     return (
       <Layout>
-        <div>Here will be routing!</div>
+        <Quiz />
       </Layout>
     )
   }
