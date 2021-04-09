@@ -1,4 +1,5 @@
 import React from 'react'
+import ActiveQuiz from '../../components/active-quiz/ActiveQuiz'
 import classes from './Quiz.module.css'
 
 type QuizState = {
@@ -13,7 +14,10 @@ class Quiz extends React.Component<{}, QuizState> {
   render() {
     return (
       <div className={classes.quiz_main}>
-        <h1>Quiz</h1>
+        <div className={classes.quiz_wrapper}>
+          <h1>Quiz</h1>
+          <ActiveQuiz />
+        </div>
       </div>
     )
   }
