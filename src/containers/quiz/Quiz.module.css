@@ -4,7 +4,7 @@
   padding-top: 100px;
   flex-grow: 1;
   width: 100%;
-  background: linear-gradient(90deg, #1565c0 0%, #90caf9 100%);
+  background: linear-gradient(180deg, #0d47a1 0%, #42a5f5 100%);
 }
 
 .quiz_main h1 {
@@ -13,5 +13,5 @@
 }
 
 .quiz_wrapper {
-  width: 600px;
+  width: 800px;
 }
