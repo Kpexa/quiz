@@ -53,6 +53,12 @@ class Quiz extends React.Component<{}, QuizState> {
   }
 
   onAnswerClickHandler = (id: number): void => {
+    if (this.state.userAnswer) {
+      if (this.state.userAnswer.status === 'success') {
+        return
+      }
+    }
+
     const questions = this.getQuestion(this.state.activeQuestion)
 
     if (questions?.correctAnswerId === id) {
