@@ -1,4 +1,4 @@
-.quiz_main {
+.Quiz-main {
   display: flex;
   justify-content: center;
   padding-top: 100px;
@@ -7,11 +7,11 @@
   background: linear-gradient(180deg, #0d47a1 0%, #42a5f5 100%);
 }
 
-.quiz_main h1 {
+.Quiz-main h1 {
   color: white;
   margin-left: 10px;
 }
 
-.quiz_wrapper {
+.Quiz-wrapper {
   width: 800px;
 }

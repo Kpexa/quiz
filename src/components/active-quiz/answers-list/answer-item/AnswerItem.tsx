@@ -1,13 +1,16 @@
 import React from 'react'
 import { AnswerItemProps } from '../../../../types/types'
-import classes from './AnswerItem.module.css'
+import './AnswerItem.css'
 
-const AnswerItem = ({ answer, onAnswerClick }: AnswerItemProps) => {
+const AnswerItem = ({ answer, onAnswerClick, userAnswer }: AnswerItemProps) => {
+  const cls = ['AnswerItem']
+
+  if (userAnswer?.id === answer.id) {
+    cls.push(userAnswer.status)
+  }
+
   return (
-    <li
-      className={classes.answer_item}
-      onClick={() => onAnswerClick(answer.id)}
-    >
+    <li className={cls.join(' ')} onClick={() => onAnswerClick(answer.id)}>
       {answer.text}
     </li>
   )

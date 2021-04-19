@@ -1,16 +1,21 @@
 import React from 'react'
 import { AnswersListProps } from '../../../types/types'
 import AnswerItem from './answer-item/AnswerItem'
-import classes from './AnswersList.module.css'
+import './AnswersList.css'
 
-const AnswersList = ({ answers, onAnswerClick }: AnswersListProps) => {
+const AnswersList = ({
+  answers,
+  onAnswerClick,
+  userAnswer,
+}: AnswersListProps) => {
   return (
-    <ul className={classes.answers_list}>
+    <ul className=".AnswersList-wrapper">
       {answers.map((answer) => {
         return (
           <AnswerItem
             key={answer.id}
             answer={answer}
+            userAnswer={userAnswer}
             onAnswerClick={onAnswerClick}
           />
         )

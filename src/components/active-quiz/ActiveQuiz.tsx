@@ -1,19 +1,33 @@
 import React from 'react'
 import { ActiveQuizProps } from '../../types/types'
-import classes from './ActiveQuiz.module.css'
+import './ActiveQuiz.css'
 import AnswersList from './answers-list/AnswerList'
 
-const ActiveQuiz = ({ answers, question, onAnswerClick }: ActiveQuizProps) => {
+const ActiveQuiz = ({
+  answers,
+  question,
+  onAnswerClick,
+  quizLength,
+  activeQuestion,
+  userAnswer,
+}: ActiveQuizProps) => {
   return (
-    <div className={classes.active_quiz}>
-      <p className={classes.question}>
+    <div className="ActiveQuiz-warapper">
+      <p className="ActiveQuiz-question">
         <span>
-          <strong>1. </strong>
-          {question}
+          <strong>
+            {activeQuestion}. {question}
+          </strong>
         </span>
-        <small>3 of 9</small>
+        <small>
+          {activeQuestion} of {quizLength}
+        </small>
       </p>
-      <AnswersList answers={answers} onAnswerClick={onAnswerClick} />
+      <AnswersList
+        answers={answers}
+        onAnswerClick={onAnswerClick}
+        userAnswer={userAnswer}
+      />
     </div>
   )
 }
