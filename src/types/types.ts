@@ -1,4 +1,5 @@
 export type QuizState = {
+  isFinished: boolean
   activeQuestion: number
   userAnswer: userAnswer
   quiz: quizItem[]

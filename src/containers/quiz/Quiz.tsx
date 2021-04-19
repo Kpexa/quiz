@@ -7,6 +7,7 @@ class Quiz extends React.Component<{}, QuizState> {
   state: QuizState = {
     activeQuestion: 1,
     userAnswer: null,
+    isFinished: false,
     quiz: [
       {
         id: 1,
@@ -68,7 +69,9 @@ class Quiz extends React.Component<{}, QuizState> {
 
       const timeout = window.setTimeout(() => {
         if (this.isQuizFinished()) {
-          console.log('finished')
+          this.setState({
+            isFinished: true,
+          })
         } else {
           this.setState({
             activeQuestion: this.state.activeQuestion + 1,
@@ -96,17 +99,21 @@ class Quiz extends React.Component<{}, QuizState> {
       <div className="Quiz-main">
         <div className="Quiz-wrapper">
           <h1>Use your brain</h1>
-          <ActiveQuiz
-            answers={this.getQuestion(this.state.activeQuestion)!.answers}
-            question={this.getQuestion(this.state.activeQuestion)!.question}
-            correctAnswerId={
-              this.getQuestion(this.state.activeQuestion)!.correctAnswerId
-            }
-            quizLength={this.state.quiz.length}
-            activeQuestion={this.state.activeQuestion}
-            userAnswer={this.state.userAnswer}
-            onAnswerClick={this.onAnswerClickHandler}
-          />
+          {this.state.isFinished ? (
+            <h1>Finished</h1>
+          ) : (
+            <ActiveQuiz
+              answers={this.getQuestion(this.state.activeQuestion)!.answers}
+              question={this.getQuestion(this.state.activeQuestion)!.question}
+              correctAnswerId={
+                this.getQuestion(this.state.activeQuestion)!.correctAnswerId
+              }
+              quizLength={this.state.quiz.length}
+              activeQuestion={this.state.activeQuestion}
+              userAnswer={this.state.userAnswer}
+              onAnswerClick={this.onAnswerClickHandler}
+            />
+          )}
         </div>
       </div>
     )
