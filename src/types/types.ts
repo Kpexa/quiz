@@ -1,4 +1,5 @@
 export type QuizState = {
+  results: results
   isFinished: boolean
   activeQuestion: number
   userAnswer: userAnswer
@@ -32,6 +33,11 @@ export type AnswerItemProps = {
   onAnswerClick(id: number): void
 }
 
+export type FinishedQuizProps = {
+  results: results
+  quiz: quizItem[]
+}
+
 export type quizItem = {
   id: number
   answers: TAnswer[]
@@ -39,7 +45,12 @@ export type quizItem = {
   correctAnswerId: number
 }
 
-type userAnswer = {
+export type userAnswer = {
   id: number
   status: 'success' | 'error'
 } | null
+
+export type results = {
+  id: number
+  status: 'success' | 'error'
+}[]

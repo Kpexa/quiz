@@ -1,6 +1,7 @@
 import React from 'react'
 import ActiveQuiz from '../../components/active-quiz/ActiveQuiz'
-import { quizItem, QuizState } from '../../types/types'
+import FinishedQuiz from '../../components/finished-quiz/FinishedQuiz'
+import { quizItem, QuizState, userAnswer } from '../../types/types'
 import './Quiz.css'
 
 class Quiz extends React.Component<{}, QuizState> {
@@ -8,6 +9,7 @@ class Quiz extends React.Component<{}, QuizState> {
     activeQuestion: 1,
     userAnswer: null,
     isFinished: false,
+    results: [],
     quiz: [
       {
         id: 1,
@@ -53,19 +55,45 @@ class Quiz extends React.Component<{}, QuizState> {
     ],
   }
 
+  handleResult = (answer: userAnswer): void => {
+    const { activeQuestion } = this.state
+
+    const isExistResult = (): boolean => {
+      const existResult = this.state.results.find(
+        (result) => result.id === activeQuestion
+      )
+      return existResult ? true : false
+    }
+
+    if (isExistResult()) {
+      this.setState({
+        userAnswer: answer!,
+      })
+      return
+    }
+
+    this.setState({
+      results: [
+        ...this.state.results,
+        { id: activeQuestion, status: answer!.status },
+      ],
+      userAnswer: answer!,
+    })
+  }
+
   onAnswerClickHandler = (id: number): void => {
-    if (this.state.userAnswer) {
-      if (this.state.userAnswer.status === 'success') {
+    const userAnswer = this.state.userAnswer
+    const activeQuestion = this.state.activeQuestion
+    const questions = this.getQuestion(this.state.activeQuestion)
+
+    if (userAnswer) {
+      if (userAnswer.status === 'success') {
         return
       }
     }
 
-    const questions = this.getQuestion(this.state.activeQuestion)
-
     if (questions?.correctAnswerId === id) {
-      this.setState({
-        userAnswer: { id, status: 'success' },
-      })
+      this.handleResult({ id, status: 'success' })
 
       const timeout = window.setTimeout(() => {
         if (this.isQuizFinished()) {
@@ -74,16 +102,14 @@ class Quiz extends React.Component<{}, QuizState> {
           })
         } else {
           this.setState({
-            activeQuestion: this.state.activeQuestion + 1,
+            activeQuestion: activeQuestion + 1,
             userAnswer: null,
           })
         }
         window.clearTimeout(timeout)
       }, 500)
     } else {
-      this.setState({
-        userAnswer: { id, status: 'error' },
-      })
+      this.handleResult({ id, status: 'error' })
     }
   }
 
@@ -100,7 +126,7 @@ class Quiz extends React.Component<{}, QuizState> {
         <div className="Quiz-wrapper">
           <h1>Use your brain</h1>
           {this.state.isFinished ? (
-            <h1>Finished</h1>
+            <FinishedQuiz results={this.state.results} quiz={this.state.quiz} />
           ) : (
             <ActiveQuiz
               answers={this.getQuestion(this.state.activeQuestion)!.answers}
