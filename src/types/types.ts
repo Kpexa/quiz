@@ -36,6 +36,7 @@ export type AnswerItemProps = {
 export type FinishedQuizProps = {
   results: results
   quiz: quizItem[]
+  onRetryClick(): void
 }
 
 export type quizItem = {

@@ -2,7 +2,7 @@ import React from 'react'
 import { FinishedQuizProps } from '../../types/types'
 import './FinishedQuiz.css'
 
-const FinishedQuiz = ({ results, quiz }: FinishedQuizProps) => {
+const FinishedQuiz = ({ results, quiz, onRetryClick }: FinishedQuizProps) => {
   const successCount = results.reduce((acc, item) => {
     if (item.status === 'success') {
       acc++
@@ -36,7 +36,7 @@ const FinishedQuiz = ({ results, quiz }: FinishedQuizProps) => {
         Correct {successCount} from {quiz.length}
       </p>
 
-      {/* <button>Try again</button> */}
+      <button onClick={onRetryClick}>Try again</button>
     </div>
   )
 }

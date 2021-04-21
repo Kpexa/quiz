@@ -24,3 +24,17 @@
 .FinishedQuiz-error {
   color: rgba(240, 87, 108, 0.7);
 }
+
+.FinishedQuiz button {
+  background: inherit;
+  border: 2px solid white;
+  border-radius: 5px;
+  color: white;
+  padding: 5px 10px;
+}
+
+.FinishedQuiz button:hover {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background 0.3s ease-in-out;
+}

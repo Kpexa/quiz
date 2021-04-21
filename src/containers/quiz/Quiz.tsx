@@ -8,7 +8,7 @@ class Quiz extends React.Component<{}, QuizState> {
   state: QuizState = {
     activeQuestion: 1,
     userAnswer: null,
-    isFinished: false,
+    isFinished: true,
     results: [],
     quiz: [
       {
@@ -120,13 +120,26 @@ class Quiz extends React.Component<{}, QuizState> {
   isQuizFinished = (): boolean =>
     this.state.activeQuestion === this.state.quiz.length
 
+  retryHandler = () => {
+    this.setState({
+      activeQuestion: 1,
+      userAnswer: null,
+      isFinished: false,
+      results: [],
+    })
+  }
+
   render() {
     return (
       <div className="Quiz-main">
         <div className="Quiz-wrapper">
           <h1>Use your brain</h1>
           {this.state.isFinished ? (
-            <FinishedQuiz results={this.state.results} quiz={this.state.quiz} />
+            <FinishedQuiz
+              results={this.state.results}
+              quiz={this.state.quiz}
+              onRetryClick={this.retryHandler}
+            />
           ) : (
             <ActiveQuiz
               answers={this.getQuestion(this.state.activeQuestion)!.answers}
